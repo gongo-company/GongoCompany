@@ -1,0 +1,19 @@
+name: Publish
+on:
+  release:
+    types: [published]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: GreenTF/upload-thunderstore-package@v4.3
+        with:
+          namespace: Gongo
+          token: ${{ secrets.THUNDERSTORE_TOKEN }}
+          version: ${{github.ref_name}}
+          name: Gongo_Company
+          website: ""
+          categories: |
+            suits
+            cosmetics
